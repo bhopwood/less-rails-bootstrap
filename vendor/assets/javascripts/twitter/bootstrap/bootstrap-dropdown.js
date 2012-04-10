@@ -48,14 +48,6 @@
         selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
       }
 
-      // if this target is disabled in any way, don't toggle
-      // added 2012/03/20
-      // copied from dominicbarnes / bootstrap
-      if ($this.prop( "disabled" ) || $this.is( ".disabled" ) || $this.is( "[disabled]" )) {
-        return false
-      }
-      // end
-      
       $parent = $(selector)
       $parent.length || ($parent = $this.parent())
 
@@ -94,9 +86,7 @@
 
   $(function () {
     $('html').on('click.dropdown.data-api', clearMenus)
-    $('body')
-      .on('click.dropdown', '.dropdown form', function (e) { e.stopPropagation() })
-      .on('click.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+    $('body').on('click.dropdown.data-api', toggle, Dropdown.prototype.toggle)
   })
 
 }( window.jQuery );

@@ -27,7 +27,7 @@
 
   var Carousel = function (element, options) {
     this.$element = $(element)
-    this.options = options
+    this.options = $.extend({}, $.fn.carousel.defaults, options)
     this.options.slide && this.slide(this.options.slide)
     this.options.pause == 'hover' && this.$element
       .on('mouseenter', $.proxy(this.pause, this))
@@ -37,8 +37,7 @@
   Carousel.prototype = {
 
     cycle: function () {
-      this.options.interval
-        && (this.interval = setInterval($.proxy(this.next, this), this.options.interval))
+      this.interval = setInterval($.proxy(this.next, this), this.options.interval)
       return this
     }
 
@@ -95,7 +94,13 @@
 
       if ($next.hasClass('active')) return
 
-      if ($.support.transition && this.$element.hasClass('slide')) {
+      if (!$.support.transition && this.$element.hasClass('slide')) {
+        this.$element.trigger('slide')
+        $active.removeClass('active')
+        $next.addClass('active')
+        this.sliding = false
+        this.$element.trigger('slid')
+      } else {
         $next.addClass(type)
         $next[0].offsetWidth // force reflow
         $active.addClass(direction)
@@ -107,12 +112,6 @@
           that.sliding = false
           setTimeout(function () { that.$element.trigger('slid') }, 0)
         })
-      } else {
-        this.$element.trigger('slide')
-        $active.removeClass('active')
-        $next.addClass('active')
-        this.sliding = false
-        this.$element.trigger('slid')
       }
 
       isCycling && this.cycle()
@@ -130,11 +129,11 @@
     return this.each(function () {
       var $this = $(this)
         , data = $this.data('carousel')
-        , options = $.extend({}, $.fn.carousel.defaults, typeof option == 'object' && option)
+        , options = typeof option == 'object' && option
       if (!data) $this.data('carousel', (data = new Carousel(this, options)))
       if (typeof option == 'number') data.to(option)
       else if (typeof option == 'string' || (option = options.slide)) data[option]()
-      else if (options.interval) data.cycle()
+      else data.cycle()
     })
   }
 

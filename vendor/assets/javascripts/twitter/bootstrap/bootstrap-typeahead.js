@@ -39,9 +39,8 @@
 
   , select: function () {
       var val = this.$menu.find('.active').attr('data-value')
-      this.$element
-        .val(val)
-        .change()
+      this.$element.val(val)
+      this.$element.change();
       return this.hide()
     }
 
@@ -110,8 +109,7 @@
     }
 
   , highlighter: function (item) {
-      var query = this.query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
-      return item.replace(new RegExp('(' + query + ')', 'ig'), function ($1, match) {
+      return item.replace(new RegExp('(' + this.query + ')', 'ig'), function ($1, match) {
         return '<strong>' + match + '</strong>'
       })
     }

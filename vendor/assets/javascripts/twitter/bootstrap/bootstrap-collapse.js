@@ -44,7 +44,7 @@
   , show: function () {
       var dimension = this.dimension()
         , scroll = $.camelCase(['scroll', dimension].join('-'))
-        , actives = this.$parent && this.$parent.find('> .accordion-group > .in')
+        , actives = this.$parent && this.$parent.find('.in')
         , hasData
 
       if (actives && actives.length) {
@@ -56,6 +56,7 @@
       this.$element[dimension](0)
       this.transition('addClass', 'show', 'shown')
       this.$element[dimension](this.$element[0][scroll])
+
     }
 
   , hide: function () {
@@ -73,7 +74,7 @@
         [dimension](size || 'auto')
         [0].offsetWidth
 
-      this.$element[size != null ? 'addClass' : 'removeClass']('collapse')
+      this.$element[size ? 'addClass' : 'removeClass']('collapse')
 
       return this
     }
