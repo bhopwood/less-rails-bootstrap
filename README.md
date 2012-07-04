@@ -1,109 +1,137 @@
+[Twitter Bootstrap](http://twitter.github.com/bootstrap) [![Build Status](https://secure.travis-ci.org/twitter/bootstrap.png)](http://travis-ci.org/twitter/bootstrap)
+=================
 
-# Less Rails Bootstrap
+Bootstrap provides simple and flexible HTML, CSS, and Javascript for popular user interface components and interactions. In other words, it's a front-end toolkit for faster, more beautiful web development. It's created and maintained by [Mark Otto](http://twitter.com/mdo) and [Jacob Thornton](http://twitter.com/fat) at Twitter.
 
-Bootstrap is Twitter's toolkit for kickstarting CSS for websites, apps, and more. It includes base CSS styles for typography, forms, buttons, tables, grids, navigation, alerts, and more. To get started -- checkout http://twitter.github.com/bootstrap!
-
-The less-rails-bootstrap project hooks into less-rails (https://github.com/metaskills/less-rails) to provide both compiled and LESS CSS source files from the Twitter Bootstrap project within the Rails 3.1 asset pipeline. Benefits:
-
-* Assets are namespaced in twitter/bootstrap to avoid asset conflicts.
-* Top level requires to get all stylesheets or javascripts.
-* Ability to import or require individually namespaced stylesheets or javascripts.
+To get started, checkout http://twitter.github.com/bootstrap!
 
 
-## Versioning
 
-This gem will directly track the semantic versioning releases of the Twitter Bootstrap project. Our major and minor versions will always match to theirs. Tho we may have tiny patch level releases specific to this gem.
+Quick start
+-----------
+
+Clone the repo, `git clone git://github.com/twitter/bootstrap.git`, or [download the latest release](https://github.com/twitter/bootstrap/zipball/master).
 
 
-## Installing
 
-This library requires the less-rails gem greater than 2.0.0 to work. Our gem spec will pull this and less in automatically. So all you need to do is bundle up less-rails-bootstrap in your Gemfle.
+Versioning
+----------
 
-```ruby
-gem 'less-rails-bootstrap'
+For transparency and insight into our release cycle, and for striving to maintain backward compatibility, Bootstrap will be maintained under the Semantic Versioning guidelines as much as possible.
+
+Releases will be numbered with the follow format:
+
+`<major>.<minor>.<patch>`
+
+And constructed with the following guidelines:
+
+* Breaking backward compatibility bumps the major (and resets the minor and patch)
+* New additions without breaking backward compatibility bumps the minor (and resets the patch)
+* Bug fixes and misc changes bumps the patch
+
+For more information on SemVer, please visit http://semver.org/.
+
+
+
+Bug tracker
+-----------
+
+Have a bug? Please create an issue here on GitHub! Also, when filing please make sure you're familiar with [necolas's guidelines](https://github.com/necolas/issue-guidelines). thanks! <3
+
+https://github.com/twitter/bootstrap/issues
+
+
+
+Twitter account
+---------------
+
+Keep up to date on announcements and more by following Bootstrap on Twitter, [@TwBootstrap](http://twitter.com/TwBootstrap).
+
+
+
+Blog
+----
+
+Read more detailed announcements, discussions, and more on [The Official Twitter Bootstrap Blog](http://blog.getbootstrap.com).
+
+
+
+Mailing list
+------------
+
+Have a question? Ask on our mailing list!
+
+twitter-bootstrap@googlegroups.com
+
+http://groups.google.com/group/twitter-bootstrap
+
+
+
+IRC
+---
+
+Server: irc.freenode.net
+
+Channel: ##twitter-bootstrap (the double ## is not a typo)
+
+
+
+Developers
+----------
+
+We have included a makefile with convenience methods for working with the Bootstrap library.
+
++ **dependencies**
+Our makefile depends on you having recess, uglify.js, and jshint installed. To install, just run the following command in npm:
+
+```
+$ npm install recess uglify-js jshint -g
 ```
 
++ **build** - `make`
+Runs the recess compiler to rebuild the `/less` files and compiles the docs pages. Requires recess and uglify-js. <a href="http://twitter.github.com/bootstrap/less.html#compiling">Read more in our docs &raquo;</a>
 
-## Usage
++ **test** - `make test`
+Runs jshint and qunit tests headlessly in phantom js (used for ci). Depends on having phatomjs installed.
 
-The easiest way to use Twitter Bootstrap is require it in your `application.css` file. Doing so will compile the complete LESS libraries files for Bootstrap.
-
-```css
-/*
- *= require twitter/bootstrap
-*/
-
-#foo {
-  /* Your styles... */
-}
-```
-
-In a file with the `.css.less` extension, you can import the entire Bootstrap LESS framework. This will allow you to use Bootstrap's variables and mixins in your CSS that follows. Remember, unlike other CSS frameworks, requiring or importing Bootstrap will include all the CSS for building a bootstrapped website. If you only want variables or mixins, you will have to import those discreet files.
-
-```css
-@import "twitter/bootstrap";
-
-#foo {
-  .border-radius(4px);
-}
-```
-
-Maybe all you want to use is the variables and mixins that come with Twitter Bootstrap. No problem, just import them individually from you own `.css.less` file. In this case only the `#foo` selector is output.
-
-```css
-@import "twitter/bootstrap/variables";
-@import "twitter/bootstrap/mixins";
-
-.myButton(@radius: 5px) {
-  .border-radius(@radius);
-}
-
-#foo {
-  .myButton(10px);
-}
-```
-
-Using the JavaScript files is just as easy. Again, you can include all them with a single directive from your `application.js` file. Optionally, you can require only the files you need like `require twitter/bootstrap/modal`.
-
-```javascript
-//= require twitter/bootstrap
-
-$(document).ready(function(){
-  
-});
-```
++ **watch** - `make watch`
+This is a convenience method for watching just Less files and automatically building them whenever you save. Requires the Watchr gem.
 
 
-## Testing
+Contributing
+------------
 
-Simple! Just clone the repo, then run `bundle install` and `bundle exec rake`. The tests will begin to run. We also use Travis CI to run our tests too. Current build status is:
-
-[![Build Status](https://secure.travis-ci.org/metaskills/less-rails-bootstrap.png)](http://travis-ci.org/metaskills/less-rails-bootstrap)
-
-We also have a test rails project setup using all the examples documented above. If you make a github issue and complain about something, I will likely forward you to this project.
-
-[https://github.com/metaskills/less-rails-bootstrap-test](https://github.com/metaskills/less-rails-bootstrap-test)
+Please make all pull requests against wip-* branches. Also, if your unit test contains javascript patches or features - you must include relevant unit tests. Thanks!
 
 
-## License
+Authors
+-------
 
-Twitter Bootstrap Project: http://twitter.github.com/bootstrap
+**Mark Otto**
 
-Copyright 2011 Twitter, Inc.
++ http://twitter.com/mdo
++ http://github.com/markdotto
+
+**Jacob Thornton**
+
++ http://twitter.com/fat
++ http://github.com/fat
+
+
+
+Copyright and license
+---------------------
+
+Copyright 2012 Twitter, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+you may not use this work except in compliance with the License.
+You may obtain a copy of the License in the LICENSE file, or at:
 
-http://www.apache.org/licenses/LICENSE-2.0
+   http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
-Less::Rails is Copyright (c) 2011 Ken Collins, <ken@metaskills.net> and is distributed under the MIT license.
-
-
-
