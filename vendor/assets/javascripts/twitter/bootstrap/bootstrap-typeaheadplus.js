@@ -27,7 +27,7 @@ function ($) {
       display: 'name',
       val: 'id',
       itemSelected: function () { },
-      selectFunc: function () {}
+      selectFunc: null
     },
 
     _keyCodes = {
@@ -208,7 +208,7 @@ function ($) {
       select: function () {
         var $selectedItem = this.$menu.find('.active');
         if (this.options.selectFunc != null) {
-          alert("Selected");
+          this.options.selectFunc($selectedItem);
         } else {
           this.$element.val($selectedItem.text()).change();
         }
