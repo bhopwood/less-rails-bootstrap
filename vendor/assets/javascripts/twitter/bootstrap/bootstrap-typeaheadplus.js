@@ -207,7 +207,7 @@ function ($) {
 
       select: function () {
         var $selectedItem = this.$menu.find('.active');
-        if (this.options.selectFunc != nil) {
+        if (this.options.selectFunc != null) {
           alert("Selected");
         } else {
           this.$element.val($selectedItem.text()).change();
