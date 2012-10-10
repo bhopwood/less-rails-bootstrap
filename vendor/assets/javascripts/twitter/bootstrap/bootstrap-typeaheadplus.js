@@ -5,8 +5,11 @@
 //  Bootstrap Typeahead+ v2.0
 //  Terry Rosen
 //  2012/10/08 - bh
-//  changed name to 'typeaheadplus' to prevent conflict with standard 'typeahead'
-//  https://github.com/tcrosen/twitter-bootstrap-typeaheadplus
+//  modified by me - changed name to typeaheadplus to avoid conflicts with standard typeahead
+//  https://github.com/tcrosen/twitter-bootstrap-typeahead
+//  2012/10/10 - bh
+//  added option for select function
+//  
 //
 //
 
@@ -23,7 +26,8 @@ function ($) {
       item: '<li><a href="#"></a></li>',
       display: 'name',
       val: 'id',
-      itemSelected: function () { }
+      itemSelected: function () { },
+      selectFunc: function () {}
     },
 
     _keyCodes = {
@@ -180,7 +184,7 @@ function ($) {
               i.attr('data-value', JSON.stringify($.extend({}, that.options.val, item)))
             }
 
-            $templateItem = i.find('.typeahead-display-val');
+            $templateItem = i.find('.typeaheadplus-display-val');
             $standardItem = i.find('a');
 
             if ($templateItem.length) {
@@ -203,7 +207,11 @@ function ($) {
 
       select: function () {
         var $selectedItem = this.$menu.find('.active');
-        this.$element.val($selectedItem.text()).change();
+        if (this.options.selectFunc != nil) {
+          alert("Selected");
+        } else {
+          this.$element.val($selectedItem.text()).change();
+        }
         this.options.itemSelected(JSON.parse($selectedItem.attr('data-value')));
         return this.hide();
       },
