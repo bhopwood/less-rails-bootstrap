@@ -208,7 +208,7 @@ function ($) {
       select: function () {
         var $selectedItem = this.$menu.find('.active');
         if (this.options.selectFunc != null) {
-          this.options.selectFunc($selectedItem);
+          this.options.selectFunc(JSON.parse($selectedItem.attr('data-value')));
         } else {
           this.$element.val($selectedItem.text()).change();
         }
