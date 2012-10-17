@@ -9,4 +9,4 @@
 //= require twitter/bootstrap/bootstrap-scrollspy.js
 //= require twitter/bootstrap/bootstrap-tab.js
 //= require twitter/bootstrap/bootstrap-transition.js
-//= require twitter/bootstrap/bootstrap-typeahead.js
+//= require twitter/bootstrap/bootstrap-typeaheadplus.js
