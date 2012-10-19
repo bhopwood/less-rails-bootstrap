@@ -69,7 +69,7 @@
 		select: function () {
 			var val = this.$menu.find('.active').attr('data-value')
 			// add element before the input element
-			this.$element.before('<span class="' + this.updater(val) + '">hello </span>')
+			this.$element.before('<span class="selected">' + this.updater(val) + '</span>')
 			this.$element
             // .val(this.updater(val))
                 .val('')
