@@ -4,7 +4,7 @@ require "less/rails/bootstrap/version"
 
 Gem::Specification.new do |s|
   s.name        = "less-rails-bootstrap"
-  s.version     = Less::Rails::Bootstrap::VERSION
+  s.version     = "2.1.2"
   s.authors     = ["Ken Collins"]
   s.email       = ["ken@metaskills.net"]
   s.homepage    = "http://github.com/metaskills/less-rails-bootstrap"
