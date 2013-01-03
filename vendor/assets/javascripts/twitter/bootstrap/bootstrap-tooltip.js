@@ -1,5 +1,5 @@
 /* ===========================================================
- * bootstrap-tooltip.js v2.2.3
+ * bootstrap-tooltip.js v2.3.0
  * http://twitter.github.com/bootstrap/javascript.html#tooltips
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ===========================================================
@@ -110,8 +110,11 @@
         , actualHeight
         , placement
         , tp
+        , e = $.Event('show')
 
       if (this.hasContent() && this.enabled) {
+        this.$element.trigger(e)
+        if (e.isDefaultPrevented()) return
         $tip = this.tip()
         this.setContent()
 
@@ -126,7 +129,8 @@
         $tip
           .detach()
           .css({ top: 0, left: 0, display: 'block' })
-          .insertAfter(this.$element)
+
+        this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
 
         pos = this.getPosition()
 
@@ -152,6 +156,8 @@
           .offset(tp)
           .addClass(placement)
           .addClass('in')
+
+        this.$element.trigger('shown')
       }
     }
 
@@ -166,6 +172,10 @@
   , hide: function () {
       var that = this
         , $tip = this.tip()
+        , e = $.Event('hide')
+
+      this.$element.trigger(e)
+      if (e.isDefaultPrevented()) return
 
       $tip.removeClass('in')
 
@@ -183,6 +193,8 @@
       $.support.transition && this.$tip.hasClass('fade') ?
         removeWithAnimation() :
         $tip.detach()
+
+      this.$element.trigger('hidden')
 
       return this
     }
@@ -279,6 +291,7 @@
   , title: ''
   , delay: 0
   , html: false
+  , container: false
   }
 
 
